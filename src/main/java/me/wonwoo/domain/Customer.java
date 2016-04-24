@@ -13,13 +13,13 @@ import java.util.List;
 @ToString(exclude = {"reservations"})
 public class Customer {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+  @Id
+  @GeneratedValue
+  private Long id;
 
-    private String name;
+  private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
-    List<Reservation> reservations = new ArrayList<>();
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
+  List<Reservation> reservations = new ArrayList<>();
 
 }

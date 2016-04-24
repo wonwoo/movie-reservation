@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class MovieService {
 
-    @Autowired
-    private MovieRepository movieRepository;
+  @Autowired
+  private MovieRepository movieRepository;
 
-    public Movie findOne(Long id) {
-        return movieRepository.findOne(id);
-    }
+  public Movie findOne(Long id) {
+    return movieRepository.findOne(id);
+  }
 }

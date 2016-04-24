@@ -14,40 +14,41 @@ import java.util.Optional;
 @Service
 public class ScreenService {
 
-    @Autowired
-    private ScreenRepository screenRepository;
+  @Autowired
+  private ScreenRepository screenRepository;
 
-    //조금 수정하기 소스가 맘에 안듦!
-    @Transactional(readOnly = true)
-    public Screen findOne(Long id) {
-        Screen screen = screenRepository.findOne(id);
-        if(screen == null){
-            throw new IdNotFoundException(id);
-        }
-        Movie movie = screen.getMovie();
-        List<DisCountRule> disCountRules = movie.getDisCount().getDisCountRules();
-        Optional<DisCount> disCountOptional = findDisCount(screen, disCountRules);
+  //조금 수정하기 소스가 맘에 안듦!
+  @Transactional(readOnly = true)
+  public Screen findOne(Long id) {
+    Screen screen = screenRepository.findOne(id);
+    if (screen == null) {
+      throw new IdNotFoundException(id);
+    }
+    Movie movie = screen.getMovie();
 
-        if (disCountOptional.isPresent()) {
-            DisCount dc = disCountOptional.get();
-            if (dc.getDisCountType() == DisCountType.AMOUNT) {
-                screen.setDisCount(movie.getPrice().subtract(dc.getPrice()));
-            } else {
-                BigDecimal divide = dc.getPrice().divide(new BigDecimal(100));
-                BigDecimal multiply = movie.getPrice().multiply(divide);
-                screen.setDisCount(movie.getPrice().subtract(multiply));
-            }
-        }else{
-            screen.setDisCount(movie.getPrice());
-        }
+    List<DisCountRule> disCountRules = movie.getDisCount().getDisCountRules();
+    Optional<DisCount> disCountOptional = findDisCount(screen, disCountRules);
 
-        return screen;
+    if (disCountOptional.isPresent()) {
+      DisCount dc = disCountOptional.get();
+      if (dc.getDisCountType() == DisCountType.AMOUNT) {
+//                screen.setDisCount(movie.getPrice().subtract(dc.getPrice()));
+      } else {
+        BigDecimal divide = dc.getPrice().divide(new BigDecimal(100));
+        BigDecimal multiply = movie.getPrice().multiply(divide);
+//                screen.setDisCount(movie.getPrice().subtract(multiply));
+      }
+    } else {
+//            screen.setDisCount(movie.getPrice());
     }
 
-    private Optional<DisCount> findDisCount(Screen screen, List<DisCountRule> disCountRules) {
-        return disCountRules.stream()
-                    .filter(role -> role.getSeq() == screen.getSeq())
-                    .map(i -> i.getDisCount()).findFirst();
-    }
+    return screen;
+  }
+
+  private Optional<DisCount> findDisCount(Screen screen, List<DisCountRule> disCountRules) {
+    return disCountRules.stream()
+      .filter(role -> role.getSeq() == screen.getSeq())
+      .map(i -> i.getDisCount()).findFirst();
+  }
 
 }

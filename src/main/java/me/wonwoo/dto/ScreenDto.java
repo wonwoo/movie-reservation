@@ -8,25 +8,25 @@ import java.util.Date;
 
 public class ScreenDto {
 
-    @Data
-    public static class Screen{
+  @Data
+  public static class Screen {
 
-        private Long id;
+    private Long id;
 
-        private Date screenTime;
+    private Date screenTime;
 
-        private BigDecimal disCount;
+    private BigDecimal disCount;
 
-        private Movie movie;
+    private Movie movie;
 
-    }
+  }
 
-    @Data
-    public static class Movie{
-        private Long id;
+  @Data
+  public static class Movie {
+    private Long id;
 
-        private String title;
+    private String title;
 
-        private Integer price;
-    }
+    private Integer price;
+  }
 }

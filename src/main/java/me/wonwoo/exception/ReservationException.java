@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 public class ReservationException extends RuntimeException {
 
-    private String message;
+  private String message;
 
-    public ReservationException(String message) {
-        this.message = message;
-    }
+  public ReservationException(String message) {
+    this.message = message;
+  }
 
-    @Override
-    public String getMessage() {
-        return message;
-    }
+  @Override
+  public String getMessage() {
+    return message;
+  }
 }

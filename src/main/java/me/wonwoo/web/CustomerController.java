@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/customer")
 public class CustomerController {
 
-    @Autowired
-    private CustomerRepository customerRepository;
+  @Autowired
+  private CustomerRepository customerRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
+  @Autowired
+  private ModelMapper modelMapper;
 
-    @GetMapping("/{id}")
-    public CustomerDto.Customer getCusomter(@PathVariable Long id){
-        Customer customer = customerRepository.findOne(id);
-        return modelMapper.map(customer, CustomerDto.Customer.class);
-    }
+  @GetMapping("/{id}")
+  public CustomerDto.Customer getCusomter(@PathVariable Long id) {
+    Customer customer = customerRepository.findOne(id);
+    return modelMapper.map(customer, CustomerDto.Customer.class);
+  }
 }

@@ -26,9 +26,8 @@ public class ReservationController {
     private ModelMapper modelMapper;
 
     @PostMapping
-    public ReservationDto.ReservationResponse saveReservation(@RequestBody ReservationDto.ReservationRequest reservation){
-        Screen screen = screenService.findOne(reservation.getScreenId());
-        Reservation save = reservationService.save(reservation.getCustomerId(), screen);
-        return modelMapper.map(save, ReservationDto.ReservationResponse.class);
+    public ReservationDto.ReservationResponse saveReservation(@RequestBody ReservationDto.ReservationRequest reservationRequest){
+        Reservation reservation = reservationService.reservation(reservationRequest);
+        return modelMapper.map(reservation, ReservationDto.ReservationResponse.class);
     }
 }

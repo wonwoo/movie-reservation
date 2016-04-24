@@ -9,25 +9,25 @@ import java.util.List;
 
 public class MovieDto {
 
-    @Data
-    public static class Movie {
-        private Long id;
+  @Data
+  public static class Movie {
+    private Long id;
 
-        private String title;
+    private String title;
 
-        private Integer price;
+    private Integer price;
 
-        private List<Screen> screens = new ArrayList<>();
+    private List<Screen> screens = new ArrayList<>();
 
-    }
+  }
 
-    @Data
-    public static class Screen {
+  @Data
+  public static class Screen {
 
-        private Long id;
+    private Long id;
 
-        private Date screenTime;
+    private Date screenTime;
 
-    }
+  }
 
 }

@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/screen")
 public class ScreenController {
 
-    @Autowired
-    private ScreenService screenService;
+  @Autowired
+  private ScreenService screenService;
 
-    @Autowired
-    private ModelMapper modelMapper;
+  @Autowired
+  private ModelMapper modelMapper;
 
-    @GetMapping("{id}")
-    public ScreenDto.Screen getScreen(@PathVariable Long id){
-        Screen screen = screenService.findOne(id);
-        ScreenDto.Screen screenDto = modelMapper.map(screen, ScreenDto.Screen.class);
-        return screenDto;
-    }
+  @GetMapping("{id}")
+  public ScreenDto.Screen getScreen(@PathVariable Long id) {
+    Screen screen = screenService.findOne(id);
+    ScreenDto.Screen screenDto = modelMapper.map(screen, ScreenDto.Screen.class);
+    return screenDto;
+  }
 }

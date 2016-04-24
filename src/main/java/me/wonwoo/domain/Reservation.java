@@ -12,18 +12,27 @@ import java.math.BigDecimal;
 @ToString(exclude = {"customer", "screen"})
 public class Reservation {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+  @Id
+  @GeneratedValue
+  private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CUSTOMER_ID")
-    private Customer customer;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "CUSTOMER_ID")
+  private Customer customer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SCREEN_ID")
-    private Screen screen;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "SCREEN_ID")
+  private Screen screen;
 
-    private BigDecimal price;
+  private BigDecimal price;
 
+  public Reservation() {
+
+  }
+
+  public Reservation(Customer customer, Screen screen) {
+    this.customer = customer;
+    this.screen = screen;
+    this.price = screen.fee();
+  }
 }

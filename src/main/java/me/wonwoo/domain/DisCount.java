@@ -13,22 +13,22 @@ import java.util.List;
 @ToString(exclude = {"movie", "disCountRules"})
 public class DisCount {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+  @Id
+  @GeneratedValue
+  private Long id;
 
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "MOVIE_ID")
-    private Movie movie;
+  @OneToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "MOVIE_ID")
+  private Movie movie;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "disCount")
-    private List<DisCountRule> disCountRules = new ArrayList<>();
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "disCount")
+  private List<DisCountRule> disCountRules = new ArrayList<>();
 
-    //enum 빼야댐
-    @Enumerated(EnumType.STRING)
-    private DisCountType disCountType;
+  //enum 빼야댐
+  @Enumerated(EnumType.STRING)
+  private DisCountType disCountType;
 
-    private BigDecimal price;
+  private BigDecimal price;
 
 }

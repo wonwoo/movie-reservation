@@ -11,20 +11,20 @@ import java.util.function.Consumer;
 @ToString(exclude = {"disCount"})
 public class DisCountRule {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+  @Id
+  @GeneratedValue
+  private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "DISCOUNT_ID")
-    private DisCount disCount;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "DISCOUNT_ID")
+  private DisCount disCount;
 
-    private Integer seq;
+  private Integer seq;
 
-    public DisCountRule setIfTrue(boolean ifTrue, Consumer<DisCountRule> consumer){
-        if(ifTrue){
-            consumer.accept(this);
-        }
-        return this;
+  public DisCountRule setIfTrue(boolean ifTrue, Consumer<DisCountRule> consumer) {
+    if (ifTrue) {
+      consumer.accept(this);
     }
+    return this;
+  }
 }
